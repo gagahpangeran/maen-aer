@@ -11,7 +11,6 @@ app.get('/', function (req: Request, res: Response) {
 });
 
 app.post('/', function (req: Request, res: Response) {
-  console.log(req.body);
   const result = move(req.body)
   res.send(result);
 });

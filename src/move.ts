@@ -61,7 +61,12 @@ export default function move({ _links, arena }: RequestBody): Moves {
   const maxY = height - 1;
 
   const myId = _links.self.href;
-  const { x, y, direction: dir } = state[myId];
+  const myState = state[myId];
+
+  console.log("my state", myState);
+  console.log("arena", arena);
+
+  const { x, y, direction: dir } = myState;
 
   const wallMove = moveFromWall(x, y, maxX, maxY, dir);
 
