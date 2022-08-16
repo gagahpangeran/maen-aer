@@ -1,4 +1,5 @@
-import { Direction as Dir, Moves, RequestBody } from "./types";
+import { Direction as Dir, Moves, PlayerState, PlayerStateWithID, RequestBody, State, UserLink } from "./types";
+import { getOtherState } from "./utils";
 
 function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir) {
   if (x === 0 && dir === Dir.W)
@@ -17,14 +18,16 @@ function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir
 }
 
 export default function move({ _links, arena }: RequestBody): Moves {
-  const playerState = arena.state;
+  const state = arena.state;
   const [width, height] = arena.dims;
 
   const maxX = width - 1;
   const maxY = height - 1;
 
-  const myLink = _links.self.href;
-  const { x, y, direction: dir } = playerState[myLink];
+  const myId = _links.self.href;
+  const { x, y, direction: dir } = state[myId];
+
+  const otherState = getOtherState(myId, state);
 
   const wallMove = moveFromWall(x, y, maxX, maxY, dir);
 
