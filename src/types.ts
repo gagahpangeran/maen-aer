@@ -24,6 +24,14 @@ export interface PlayerState {
   "score": number,
 }
 
+export interface PlayerStateWithID extends PlayerState {
+  id: UserLink,
+}
+
+export interface State {
+  [key: UserLink]: PlayerState,
+}
+
 export interface Links {
   self: {
     href: string,
@@ -32,9 +40,7 @@ export interface Links {
 
 export interface Arena {
   dims: [Width, Height],
-  state: {
-    [key: UserLink]: PlayerState,
-  },
+  state: State,
 }
 
 export interface RequestBody {
