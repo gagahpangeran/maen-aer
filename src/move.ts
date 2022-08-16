@@ -31,8 +31,8 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
     return up || down || left || right;
   }
 
-  if (checkAround())
-    return randomTurn();
+  // if (checkAround())
+  //   return randomTurn();
 
   return Moves.F;
 }
