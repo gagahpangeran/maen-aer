@@ -34,7 +34,7 @@ export interface State {
 
 export interface Links {
   self: {
-    href: string,
+    href: UserLink,
   }
 }
 
