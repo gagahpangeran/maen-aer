@@ -22,6 +22,7 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
     other => Math.abs(x - other.x) <= 1 || Math.abs(y - other.y) <= 1
   );
 
+  console.log("player around count", playerAround.length);
   console.log("player around", playerAround);
 
   let toX = x;
@@ -66,7 +67,7 @@ export default function move({ _links, arena }: RequestBody): Moves {
   const myState = state[myId];
 
   console.log("my state", myState);
-  console.log("arena", arena);
+  // console.log("arena", arena);
 
   const { x, y, direction: dir } = myState;
 
