@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "./index.ts",
   "scripts": {
+    "build": "rimraf ./dist && tsc",
     "dev": "ts-node-dev --respawn --transpile-only index.ts",
     "start": "node web.js"
   },
