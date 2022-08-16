@@ -116,7 +116,7 @@ export default function move({ _links, arena }: RequestBody): Moves {
   }
 
   if (playerAround.length > 0) {
-    return randomTurn();
+    return Moves.L;
   }
 
   // Some random move
