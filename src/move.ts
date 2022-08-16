@@ -19,13 +19,21 @@ function moveFromWall(
   maxY: number,
   dir: Dir
 ) {
-  if (x === 0 && dir === Dir.W) return y === 0 ? Moves.L : Moves.R;
+  if (x === 0 && dir === Dir.W) {
+    return y === 0 ? Moves.L : Moves.R;
+  }
 
-  if (x === maxX && dir === Dir.E) return y === 0 ? Moves.R : Moves.L;
+  if (x === maxX && dir === Dir.E) {
+    return y === 0 ? Moves.R : Moves.L;
+  }
 
-  if (y === 0 && dir === Dir.N) return x === 0 ? Moves.R : Moves.L;
+  if (y === 0 && dir === Dir.N) {
+    return x === 0 ? Moves.R : Moves.L;
+  }
 
-  if (y === maxY && dir === Dir.S) return x === 0 ? Moves.L : Moves.R;
+  if (y === maxY && dir === Dir.S) {
+    return x === 0 ? Moves.L : Moves.R;
+  }
 
   return undefined;
 }
@@ -66,7 +74,9 @@ function moveFromPlayer(
     other => other.x === toX && other.y === toY
   );
 
-  if (checkAround) return randomTurn();
+  if (checkAround) {
+    return randomTurn();
+  }
 
   return Moves.F;
 }
@@ -88,7 +98,9 @@ export default function move({ _links, arena }: RequestBody): Moves {
 
   const wallMove = moveFromWall(x, y, maxX, maxY, dir);
 
-  if (wallMove !== undefined) return wallMove;
+  if (wallMove !== undefined) {
+    return wallMove;
+  }
 
   const otherState = getOtherState(myId, state);
   const playerAround = getPlayerAround(x, y, otherState);
@@ -103,10 +115,14 @@ export default function move({ _links, arena }: RequestBody): Moves {
     return Moves.T;
   }
 
-  if (playerAround.length > 0) return randomTurn();
+  if (playerAround.length > 0) {
+    return randomTurn();
+  }
 
   // Some random move
-  if (Math.random() < 0.14045) return randomTurn();
+  if (Math.random() < 0.14045) {
+    return randomTurn();
+  }
 
   return Moves.F;
 }
