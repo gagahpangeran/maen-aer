@@ -7,6 +7,7 @@
     "express": "^4.18.1"
   },
   "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only index.ts",
     "start": "node web.js"
   },
   "engines": {
