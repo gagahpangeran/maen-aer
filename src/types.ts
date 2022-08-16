@@ -6,44 +6,44 @@ export enum Direction {
   N = "N",
   E = "E",
   W = "W",
-  S = "S",
+  S = "S"
 }
 
 export enum Moves {
   F = "F",
   R = "R",
   L = "L",
-  T = "T",
+  T = "T"
 }
 
 export interface PlayerState {
-  "x": number,
-  "y": number,
-  "direction": Direction,
-  "wasHit": boolean,
-  "score": number,
+  x: number;
+  y: number;
+  direction: Direction;
+  wasHit: boolean;
+  score: number;
 }
 
 export interface PlayerStateWithID extends PlayerState {
-  id: UserLink,
+  id: UserLink;
 }
 
 export interface State {
-  [key: UserLink]: PlayerState,
+  [key: UserLink]: PlayerState;
 }
 
 export interface Links {
   self: {
-    href: UserLink,
-  }
+    href: UserLink;
+  };
 }
 
 export interface Arena {
-  dims: [Width, Height],
-  state: State,
+  dims: [Width, Height];
+  state: State;
 }
 
 export interface RequestBody {
-  _links: Links,
-  arena: Arena
+  _links: Links;
+  arena: Arena;
 }

@@ -1,5 +1,10 @@
-import { Direction as Dir, UserLink, State, PlayerStateWithID, Moves } from "./types";
-
+import {
+  Direction as Dir,
+  UserLink,
+  State,
+  PlayerStateWithID,
+  Moves
+} from "./types";
 
 export function getOtherState(myId: UserLink, state: State) {
   const playerState: PlayerStateWithID[] = Object.entries(state).map(
@@ -10,7 +15,11 @@ export function getOtherState(myId: UserLink, state: State) {
   return otherState;
 }
 
-export function getPlayerAround(x: number, y: number, otherState: PlayerStateWithID[]) {
+export function getPlayerAround(
+  x: number,
+  y: number,
+  otherState: PlayerStateWithID[]
+) {
   const HIT_DIST = 3;
 
   const playerAround = otherState.filter(
@@ -22,7 +31,12 @@ export function getPlayerAround(x: number, y: number, otherState: PlayerStateWit
   return playerAround;
 }
 
-export function checkPlayerAhead(x: number, y: number, dir: Dir, playerAround: PlayerStateWithID[]) {
+export function checkPlayerAhead(
+  x: number,
+  y: number,
+  dir: Dir,
+  playerAround: PlayerStateWithID[]
+) {
   const isPlayerAhead = playerAround.some(other => {
     switch (dir) {
       case Dir.N:
@@ -36,7 +50,7 @@ export function checkPlayerAhead(x: number, y: number, dir: Dir, playerAround: P
       default:
         return false;
     }
-  })
+  });
 
   return isPlayerAhead;
 }
