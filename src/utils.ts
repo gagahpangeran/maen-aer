@@ -1,5 +1,6 @@
 import { Direction as Dir, UserLink, State, PlayerStateWithID, Moves } from "./types";
 
+
 export function getOtherState(myId: UserLink, state: State) {
   const playerState: PlayerStateWithID[] = Object.entries(state).map(
     ([id, playerState]) => ({ id, ...playerState })
@@ -10,10 +11,12 @@ export function getOtherState(myId: UserLink, state: State) {
 }
 
 export function getPlayerAround(x: number, y: number, otherState: PlayerStateWithID[]) {
+  const HIT_DIST = 3;
+
   const playerAround = otherState.filter(
     other =>
-      (Math.abs(x - other.x) <= 1 && other.y === y) ||
-      (Math.abs(y - other.y) <= 1 && other.x === x)
+      (Math.abs(x - other.x) <= HIT_DIST && other.y === y) ||
+      (Math.abs(y - other.y) <= HIT_DIST && other.x === x)
   );
 
   return playerAround;
@@ -23,13 +26,13 @@ export function checkPlayerAhead(x: number, y: number, dir: Dir, playerAround: P
   const isPlayerAhead = playerAround.some(other => {
     switch (dir) {
       case Dir.N:
-        return other.x === x && other.y === y - 1;
+        return other.x === x && other.y < y;
       case Dir.S:
-        return other.x === x && other.y === y + 1;
+        return other.x === x && other.y > y;
       case Dir.W:
-        return other.y === y && other.x === x - 1;
+        return other.y === y && other.x < x;
       case Dir.E:
-        return other.y === y && other.x === x + 1;
+        return other.y === y && other.x > x;
       default:
         return false;
     }
