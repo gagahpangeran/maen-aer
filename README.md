@@ -1,12 +1,16 @@
-Cloud Bowl Sample - Scala Node.js
----------------------------------
-
-To make changes, edit the `web.js` file.
+# Maen Aer
 
 Run Locally (Dev):
+
 ```
-npm install
-npm run start
+yarn
+yarn dev
 ```
 
+Run in Production:
 
+```
+yarn
+yarn build
+yarn start
+```
