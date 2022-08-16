@@ -1,4 +1,4 @@
-import { UserLink, State, PlayerStateWithID, Moves } from "./types";
+import { Direction as Dir, UserLink, State, PlayerStateWithID, Moves } from "./types";
 
 export function getOtherState(myId: UserLink, state: State) {
   const playerState: PlayerStateWithID[] = Object.entries(state).map(
@@ -17,6 +17,25 @@ export function getPlayerAround(x: number, y: number, otherState: PlayerStateWit
   );
 
   return playerAround;
+}
+
+export function checkPlayerAhead(x: number, y: number, dir: Dir, playerAround: PlayerStateWithID[]) {
+  const isPlayerAhead = playerAround.some(other => {
+    switch (dir) {
+      case Dir.N:
+        return other.x === x && other.y === y - 1;
+      case Dir.S:
+        return other.x === x && other.y === y + 1;
+      case Dir.W:
+        return other.y === y && other.x === x - 1;
+      case Dir.E:
+        return other.y === y && other.x === x + 1;
+      default:
+        return false;
+    }
+  })
+
+  return isPlayerAhead;
 }
 
 export function randomTurn() {
