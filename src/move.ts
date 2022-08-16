@@ -75,7 +75,7 @@ function moveFromPlayer(
   );
 
   if (checkAround) {
-    return randomTurn();
+    return Moves.R;
   }
 
   return Moves.F;
