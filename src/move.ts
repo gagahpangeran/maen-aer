@@ -48,6 +48,8 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
       break;
   }
 
+  console.log("to x y", toX, toY);
+
   const checkAround = playerAround.some(
     other => other.x === toX && other.y === toY
   );
