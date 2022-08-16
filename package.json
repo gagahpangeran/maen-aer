@@ -4,6 +4,9 @@
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "dev": "ts-node-dev --respawn --transpile-only ./src",
+    "format": "yarn format:prettier && yarn format:eslint",
+    "format:eslint": "eslint --fix  \"**/*.ts\"",
+    "format:prettier": "prettier --write \"**/*.{js,ts,json,md}\"",
     "postinstall": "tsc --build",
     "start": "node dist/index.js"
   },
