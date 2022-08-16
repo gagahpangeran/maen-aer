@@ -40,11 +40,11 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
       break;
 
     case Dir.W:
-      toX++;
+      toX--;
       break;
 
     case Dir.E:
-      toX--;
+      toX++;
       break;
   }
 
