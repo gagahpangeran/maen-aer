@@ -1,5 +1,5 @@
 import { Direction as Dir, Moves, PlayerState, PlayerStateWithID, RequestBody, State, UserLink } from "./types";
-import { getOtherState, randomTurn } from "./utils";
+import { checkPlayerAhead, getOtherState, getPlayerAround, randomTurn } from "./utils";
 
 function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir) {
   if (x === 0 && dir === Dir.W)
@@ -18,11 +18,7 @@ function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir
 }
 
 function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateWithID[]) {
-  const playerAround = otherState.filter(
-    other =>
-      (Math.abs(x - other.x) <= 1 && other.y === y) ||
-      (Math.abs(y - other.y) <= 1 && other.x === x)
-  );
+  const playerAround = getPlayerAround(x, y, otherState);
 
   console.log("player around count", playerAround.length);
   console.log("player around", playerAround);
@@ -81,6 +77,15 @@ export default function move({ _links, arena }: RequestBody): Moves {
     return wallMove;
 
   const otherState = getOtherState(myId, state);
+  const playerAround = getPlayerAround(x, y, otherState);
 
-  return moveFromPlayer(x, y, dir, otherState);
+  const isPlayerAhead = checkPlayerAhead(x, y, dir, playerAround);
+
+  if (isPlayerAhead) {
+    return Moves.T;
+  }
+
+  return Moves.F;
+
+  // return moveFromPlayer(x, y, dir, otherState);
 }
