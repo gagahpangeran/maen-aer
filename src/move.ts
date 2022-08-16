@@ -19,7 +19,9 @@ function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir
 
 function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateWithID[]) {
   const playerAround = otherState.filter(
-    other => Math.abs(x - other.x) <= 1 || Math.abs(y - other.y) <= 1
+    other =>
+      (Math.abs(x - other.x) <= 1 && other.y === y) ||
+      (Math.abs(y - other.y) <= 1 && other.x === x)
   );
 
   console.log("player around count", playerAround.length);
