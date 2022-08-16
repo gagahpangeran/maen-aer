@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express"
 import bodyParser from "body-parser";
+import move from "./move";
 
 const app = express();
 
@@ -11,8 +12,8 @@ app.get('/', function (req: Request, res: Response) {
 
 app.post('/', function (req: Request, res: Response) {
   console.log(req.body);
-  const moves = ['F', 'T', 'L', 'R'];
-  res.send(moves[Math.floor(Math.random() * moves.length)]);
+  const result = move(req.body)
+  res.send(result);
 });
 
 app.listen(process.env.PORT || 8080);
