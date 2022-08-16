@@ -5,7 +5,7 @@ steps:
     - 'build'
     - '--builder=gcr.io/buildpacks/builder:v1'
     - '--path'
-    - 'samples/nodejs'
+    - 'samples/node-yarn'
     - '--publish'
     - 'gcr.io/$PROJECT_ID/maen-aer:$COMMIT_SHA'
 
