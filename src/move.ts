@@ -22,6 +22,8 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
     other => Math.abs(x - other.x) <= 1 || Math.abs(y - other.y)
   );
 
+  console.log("player around", playerAround);
+
   let toX = x;
   let toY = y;
 
