@@ -17,26 +17,24 @@ export enum Moves {
 }
 
 export interface PlayerState {
-  UserLink: {
-    "x": number,
-    "y": number,
-    "direction": Direction,
-    "wasHit": boolean,
-    "score": number,
-  }
+  "x": number,
+  "y": number,
+  "direction": Direction,
+  "wasHit": boolean,
+  "score": number,
 }
 
 export interface Links {
   self: {
-    href: UserLink,
+    href: string,
   }
 }
 
 export interface Arena {
   dims: [Width, Height],
   state: {
-    UserLink: PlayerState,
-  }
+    [key: UserLink]: PlayerState,
+  },
 }
 
 export interface RequestBody {
