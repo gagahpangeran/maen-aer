@@ -22,17 +22,33 @@ function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateW
     other => Math.abs(x - other.x) <= 1 || Math.abs(y - other.y)
   );
 
-  const checkAround = () => {
-    const up = dir === Dir.N && playerAround.some(other => other.y = y - 1);
-    const down = dir === Dir.S && playerAround.some(other => other.y = y + 1);
-    const left = dir === Dir.W && playerAround.some(other => other.x = x - 1);
-    const right = dir === Dir.E && playerAround.some(other => other.x = x + 1);
+  let toX = x;
+  let toY = y;
 
-    return up || down || left || right;
+  switch (dir) {
+    case Dir.N:
+      toY--;
+      break;
+
+    case Dir.S:
+      toY++;
+      break;
+
+    case Dir.W:
+      toX++;
+      break;
+
+    case Dir.E:
+      toX--;
+      break;
   }
 
-  // if (checkAround())
-  //   return randomTurn();
+  const checkAround = playerAround.some(
+    other => other.x === toX && other.y === toY
+  );
+
+  if (checkAround)
+    return randomTurn();
 
   return Moves.F;
 }
