@@ -1,22 +1,22 @@
 steps:
-- name: 'gcr.io/k8s-skaffold/pack'
-  entrypoint: 'pack'
-  args:
-    - 'build'
-    - '--builder=gcr.io/buildpacks/builder:v1'
-    - '--path'
-    - 'samples/node-yarn'
-    - '--publish'
-    - 'gcr.io/$PROJECT_ID/maen-aer:$COMMIT_SHA'
+  - name: "gcr.io/k8s-skaffold/pack"
+    entrypoint: "pack"
+    args:
+      - "build"
+      - "--builder=gcr.io/buildpacks/builder:v1"
+      - "--path"
+      - "samples/node-tsc"
+      - "--publish"
+      - "gcr.io/$PROJECT_ID/maen-aer:$COMMIT_SHA"
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-    - 'run'
-    - 'deploy'
-    - '--image=gcr.io/$PROJECT_ID/maen-aer:$COMMIT_SHA'
-    - '--platform=managed'
-    - '--project=$PROJECT_ID'
-    - '--region=us-central1'
-    - '--allow-unauthenticated'
-    - '--memory=256Mi'
-    - 'maen-aer'
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "--image=gcr.io/$PROJECT_ID/maen-aer:$COMMIT_SHA"
+      - "--platform=managed"
+      - "--project=$PROJECT_ID"
+      - "--region=us-central1"
+      - "--allow-unauthenticated"
+      - "--memory=256Mi"
+      - "maen-aer"
