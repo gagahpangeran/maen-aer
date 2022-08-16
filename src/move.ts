@@ -17,9 +17,7 @@ function moveFromWall(x: number, y: number, maxX: number, maxY: number, dir: Dir
   return undefined;
 }
 
-function moveFromPlayer(x: number, y: number, dir: Dir, otherState: PlayerStateWithID[]) {
-  const playerAround = getPlayerAround(x, y, otherState);
-
+function moveFromPlayer(x: number, y: number, dir: Dir, playerAround: PlayerStateWithID[]) {
   console.log("player around count", playerAround.length);
   console.log("player around", playerAround);
 
@@ -69,7 +67,7 @@ export default function move({ _links, arena }: RequestBody): Moves {
   console.log("my state", myState);
   // console.log("arena", arena);
 
-  const { x, y, direction: dir } = myState;
+  const { x, y, direction: dir, wasHit } = myState;
 
   const wallMove = moveFromWall(x, y, maxX, maxY, dir);
 
@@ -82,6 +80,10 @@ export default function move({ _links, arena }: RequestBody): Moves {
   const isPlayerAhead = checkPlayerAhead(x, y, dir, playerAround);
 
   if (isPlayerAhead) {
+    if (wasHit) {
+      return moveFromPlayer(x, y, dir, playerAround);
+    }
+
     return Moves.T;
   }
 
