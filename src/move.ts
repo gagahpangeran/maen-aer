@@ -87,7 +87,9 @@ export default function move({ _links, arena }: RequestBody): Moves {
     return Moves.T;
   }
 
-  return Moves.F;
+  // Some random move
+  if (Math.random() < 0.14045)
+    return randomTurn();
 
-  // return moveFromPlayer(x, y, dir, otherState);
+  return Moves.F;
 }
