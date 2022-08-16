@@ -115,7 +115,7 @@ export default function move({ _links, arena }: RequestBody): Moves {
     return Moves.T;
   }
 
-  if (playerAround.length > 0) {
+  if (playerAround.length > 0 && !wasHit) {
     return Moves.L;
   }
 
