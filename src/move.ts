@@ -5,12 +5,7 @@ import {
   RequestBody
 } from "./types";
 
-import {
-  checkPlayerAhead,
-  getOtherState,
-  getPlayerAround,
-  randomTurn
-} from "./utils";
+import { checkPlayerAhead, getOtherState, getPlayerAround } from "./utils";
 
 function moveFromWall(
   x: number,
@@ -120,9 +115,9 @@ export default function move({ _links, arena }: RequestBody): Moves {
   }
 
   // Some random move
-  if (Math.random() < 0.14045) {
-    return randomTurn();
-  }
+  // if (Math.random() < 0.14045) {
+  //   return randomTurn();
+  // }
 
   return Moves.F;
 }
