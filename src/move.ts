@@ -44,8 +44,8 @@ function moveFromPlayer(
   dir: Dir,
   playerAround: PlayerStateWithID[]
 ) {
-  console.log("player around count", playerAround.length);
-  console.log("player around", playerAround);
+  // console.log("player around count", playerAround.length);
+  // console.log("player around", playerAround);
 
   let toX = x;
   let toY = y;
@@ -68,7 +68,7 @@ function moveFromPlayer(
       break;
   }
 
-  console.log("to x y", toX, toY);
+  // console.log("to x y", toX, toY);
 
   const checkAround = playerAround.some(
     other => other.x === toX && other.y === toY
@@ -91,7 +91,7 @@ export default function move({ _links, arena }: RequestBody): Moves {
   const myId = _links.self.href;
   const myState = state[myId];
 
-  console.log("my state", myState);
+  // console.log("my state", myState);
   // console.log("arena", arena);
 
   const { x, y, direction: dir, wasHit } = myState;
